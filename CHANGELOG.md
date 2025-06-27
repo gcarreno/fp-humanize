@@ -9,13 +9,13 @@ Notable changes up to the last release.
 ### Bug Fixes
 
 - Shenanigans with packages and GitHub
-- Removed bleading edge code
+- Removed bleeding edge code
 
 ### Documentation
 
-- Addind location of package folder
+- Adding location of package folder
 - Removing `unreleased` section
-- Hadding Build Status
+- Adding Build Status
 
 ### Miscellaneous Tasks
 
