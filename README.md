@@ -16,3 +16,5 @@ This package provides functions to humanize the following:
 - Time: 1 second ago, 1 second from now, etc
 
 There's a comprehensive demo: [Demo Folder](demo)
+
+You can find the package here: [Package Folder](packages/Lazarus/)
