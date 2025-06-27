@@ -1,0 +1,155 @@
+object frmMain: TfrmMain
+  Left = 1520
+  Height = 367
+  Top = 32
+  Width = 633
+  Caption = 'Humanize Demo'
+  ClientHeight = 367
+  ClientWidth = 633
+  Menu = MainMenu
+  Position = poScreenCenter
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  object panButtons: TPanel
+    Left = 0
+    Height = 367
+    Top = 0
+    Width = 154
+    Align = alLeft
+    AutoSize = True
+    BevelOuter = bvNone
+    ClientHeight = 367
+    ClientWidth = 154
+    TabOrder = 0
+    object btnFileExit: TButton
+      Left = 4
+      Height = 34
+      Top = 4
+      Width = 150
+      Action = actFileExit
+      Align = alTop
+      AutoSize = True
+      BorderSpacing.Left = 4
+      BorderSpacing.Top = 4
+      Constraints.MinWidth = 150
+      TabOrder = 0
+    end
+    object btnHumanizeBytes: TButton
+      Left = 4
+      Height = 34
+      Top = 42
+      Width = 150
+      Action = actHumanizeBytes
+      Align = alTop
+      AutoSize = True
+      BorderSpacing.Left = 4
+      BorderSpacing.Top = 4
+      Constraints.MinWidth = 150
+      TabOrder = 1
+    end
+    object btnHumanizeComma: TButton
+      Left = 4
+      Height = 34
+      Top = 80
+      Width = 150
+      Action = actHumanizeComma
+      Align = alTop
+      AutoSize = True
+      BorderSpacing.Left = 4
+      BorderSpacing.Top = 4
+      Constraints.MinWidth = 150
+      TabOrder = 2
+    end
+    object btnHumanizeOrdinal: TButton
+      Left = 4
+      Height = 34
+      Top = 118
+      Width = 150
+      Action = actHumanizeOrdinal
+      Align = alTop
+      AutoSize = True
+      BorderSpacing.Left = 4
+      BorderSpacing.Top = 4
+      Constraints.MinWidth = 150
+      TabOrder = 3
+    end
+    object btnHumanizeOrdinal1: TButton
+      Left = 4
+      Height = 34
+      Top = 156
+      Width = 150
+      Action = actHumanizeTime
+      Align = alTop
+      AutoSize = True
+      BorderSpacing.Left = 4
+      BorderSpacing.Top = 4
+      Constraints.MinWidth = 150
+      TabOrder = 4
+    end
+  end
+  object memLog: TMemo
+    Left = 158
+    Height = 367
+    Top = 0
+    Width = 475
+    Align = alClient
+    BorderSpacing.Left = 4
+    ReadOnly = True
+    ScrollBars = ssAutoVertical
+    TabOrder = 1
+  end
+  object MainMenu: TMainMenu
+    Left = 520
+    Top = 32
+    object mnuFile: TMenuItem
+      Caption = '&File'
+      object mnuFileExit: TMenuItem
+        Action = actFileExit
+      end
+    end
+    object mnuHumanize: TMenuItem
+      Caption = '&Humanize'
+      object mnuHumanizeBytes: TMenuItem
+        Action = actHumanizeBytes
+      end
+      object mnuHumanizeComma: TMenuItem
+        Action = actHumanizeComma
+      end
+      object mnuHUmanizeOrdinal: TMenuItem
+        Action = actHumanizeOrdinal
+      end
+      object mnuHumanizeTime: TMenuItem
+        Action = actHumanizeTime
+      end
+    end
+  end
+  object ActionList: TActionList
+    Left = 520
+    Top = 96
+    object actFileExit: TFileExit
+      Category = 'File'
+      Caption = 'E&xit'
+      Hint = 'Exit'
+    end
+    object actHumanizeBytes: TAction
+      Category = 'Humanize'
+      Caption = 'Bytes'
+      OnExecute = actHumanizeBytesExecute
+    end
+    object actHumanizeComma: TAction
+      Category = 'Humanize'
+      Caption = 'Comma'
+      OnExecute = actHumanizeCommaExecute
+    end
+    object actHumanizeOrdinal: TAction
+      Category = 'Humanize'
+      Caption = 'Ordinal'
+      OnExecute = actHumanizeOrdinalExecute
+    end
+    object actHumanizeTime: TAction
+      Category = 'Humanize'
+      Caption = 'Time'
+      OnExecute = actHumanizeTimeExecute
+    end
+  end
+end

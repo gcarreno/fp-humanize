@@ -1,0 +1,349 @@
+unit humanize;
+
+{$mode ObjFPC}{$H+}
+
+interface
+
+uses
+  Classes
+, SysUtils
+;
+
+type
+{ THumanize }
+  THumanize = class(TObject)
+  private
+  protected
+  public
+    class function Bytes(ABytes: UInt64; Aprecision: Integer = 2; AUseBase10: Boolean = False): String;
+    { #todo -ogcarreno : Attempt ParseBytes }
+
+    class function Comma(AInteger: Int64): String;
+    class function Comma(ADouble: Double; APrecision: Integer = 2): String;
+    class function Comma(AStrings: array of String; AOrder: Boolean = False): String;
+
+    class function CommaAnd(AStrings: array of String; AOrder: Boolean = False): String;
+
+    class function Ordinal(AInteger: UInt64): String;
+
+    class function RelativeTime(ASecondsA, AsecondsB: Int64): String;
+    class function RelativeTime(ADateTimeA, ADateTimeB: TDateTime): String;
+  published
+  end;
+
+resourcestring
+  rComma = ', ';
+
+  rCommaAnd = '%s and %s';
+
+  rOrdinalTH = 'th';
+  rOrdinalST = 'st';
+  rOrdinalND = 'nd';
+  rOrdinalRD = 'rd';
+
+  rPeriodNow     = 'now';
+  rPeriodSecond  = '1 second %s';
+  rPeriodSeconds = '%d seconds %s';
+  rPeriodMinute  = '1 minute %s';
+  rPeriodMinutes = '%d minutes %s';
+  rPeriodHour    = '1 hour %s';
+  rPeriodHours   = '%d hours %s';
+  rPeriodDay     = '1 day %s';
+  rPeriodDays    = '%d days %s';
+  rPeriodWeek    = '1 week %s';
+  rPeriodWeeks   = '%d weeks %s';
+  rPeriodMonth   = '1 month %s';
+  rPeriodMonths  = '%d months %s';
+  rPeriodYear    = '1 year %s';
+  rPeriodYears   = '%d years %s';
+  rPeriodYears2  = '2 years %s';
+  rPeriodLongAgo = 'a long while %s';
+
+implementation
+
+uses
+  DateUtils
+;
+
+{ THumanize }
+
+class function THumanize.Bytes(ABytes: UInt64; Aprecision: Integer;
+  AUseBase10: Boolean): String;
+const
+  cUnits: array of String = ('B', 'KiB', 'MiB', 'GiB', 'TiB');
+  cUnitsBase10: array of String = ('B', 'KB', 'MB', 'GB', 'TB');
+var
+  index: Integer;
+  bytesTMP: Double;
+  precision: String;
+begin
+  Result:= EmptyStr;
+
+  if (APrecision > 0) and (APrecision < 20) then
+  begin
+    precision:= EmptyStr;
+    for index:= 1 to APrecision do
+    begin
+      precision:= precision + '0';
+    end;
+  end
+  else
+    precision:= '00';
+
+  bytesTMP:= ABytes;
+
+  index:= 0;
+  if AUseBase10 then
+  begin
+    while bytesTMP >= 1000 do
+    begin
+      Inc(index);
+      bytesTMP:= bytesTMP / 1000;
+    end;
+    Result:= FormatFloat('#,#.' + precision, bytesTMP);
+    Result:= Format('%s %s', [Result, cUnitsBase10[index]]);
+  end
+  else
+  begin
+    while bytesTMP >= 1024 do
+    begin
+      Inc(index);
+      bytesTMP:= bytesTMP / 1024;
+    end;
+    Result:= FormatFloat('#,#.' + precision, bytesTMP);
+    Result:= Format('%s %s', [Result, cUnits[index]]);
+  end;
+end;
+
+class function THumanize.Comma(AInteger: Int64): String;
+begin
+  Result:= FormatFloat('#,#', AInteger);
+end;
+
+class function THumanize.Comma(ADouble: Double; APrecision: Integer): String;
+var
+  precision: String;
+  index: Integer;
+begin
+  if (APrecision > 0) and (APrecision < 20) then
+  begin
+    precision:= EmptyStr;
+    for index:= 1 to APrecision do
+    begin
+      precision:= precision + '0';
+    end;
+  end
+  else
+    precision:= '00';
+
+  Result:= FormatFloat('#,#.' + precision, ADouble);
+end;
+
+class function THumanize.Comma(AStrings: array of String;
+  AOrder: Boolean): String;
+var
+  item: String;
+  stringList: TStringList;
+begin
+  Result:= EmptyStr;
+  stringList:= TStringList.Create;
+  try
+    stringList.Delimiter:= ',';
+    stringList.QuoteChar:= #0;
+    for item in AStrings do
+      stringList.Append(' ' + item);
+    if AOrder then
+      stringList.Sort;
+    Result:= Trim(stringList.DelimitedText);
+  finally
+    stringList.Free;
+  end;
+end;
+
+class function THumanize.CommaAnd(AStrings: array of String;
+  AOrder: Boolean): String;
+var
+  item, items: String;
+  index: Integer;
+  stringList: TStringList;
+begin
+  Result:= EmptyStr;
+  stringList:= TStringList.Create;
+  try
+    for item in AStrings do
+      stringList.Append(item);
+    if AOrder then
+      stringList.Sort;
+    items:= EmptyStr;
+    for index:= 0 to stringList.Count - 2 do
+      items:= items + stringList[index] + rComma;
+    SetLength(items, Length(items) - 2);
+    items:= Format(rCommaAnd, [items, stringList[stringList.Count-1]]);
+    Result:= Trim(items);
+  finally
+    stringList.Free;
+  end;
+end;
+
+class function THumanize.Ordinal(AInteger: UInt64): String;
+begin
+  Result:= rOrdinalTH;
+  case AInteger mod 10 of
+    1: begin
+      if (AInteger mod 100) <> 11 then
+        Result:= rOrdinalST;
+    end;
+    2: begin
+      if (AInteger mod 100) <> 12 then
+        Result:= rOrdinalND
+    end;
+    3: begin
+      if (AInteger mod 100) <> 13 then
+        Result:= rOrdinalRD;
+    end;
+  end;
+  Result:= Format('%d%s', [AInteger, Result]);
+end;
+
+type
+  TRelativePeriod = record
+    Duration: UInt64;
+    DivideBy: UInt64;
+    Format: String;
+  end;
+const
+  Second = 1;
+  Minute = Second * 60;
+  Hour = Minute *  60;
+  Day = Hour * 24;
+  Week = Day * 7;
+  Month = Day * 30;
+  Year = Day * 365;
+  LongTime = Year * 50;
+var
+  relativePeriods: array [1..17] of TRelativePeriod;
+
+procedure BuildRelativePeriods;
+begin
+  relativePeriods[1].Duration:= Second;
+  relativePeriods[1].Format:= rPeriodNow;
+  relativePeriods[1].DivideBy:= Second;
+
+  relativePeriods[2].Duration:= 2 * Second;
+  relativePeriods[2].Format:= rPeriodSecond;
+  relativePeriods[2].DivideBy:= 1;
+
+  relativePeriods[3].Duration:= Minute;
+  relativePeriods[3].Format:= rPeriodSeconds;
+  relativePeriods[3].DivideBy:= Second;
+
+  relativePeriods[4].Duration:= 2 * Minute;
+  relativePeriods[4].Format:= rPeriodMinute;
+  relativePeriods[4].DivideBy:= 1;
+
+  relativePeriods[5].Duration:= Hour;
+  relativePeriods[5].Format:= rPeriodMinutes;
+  relativePeriods[5].DivideBy:= Minute;
+
+  relativePeriods[6].Duration:= 2 * Hour;
+  relativePeriods[6].Format:= rPeriodHour;
+  relativePeriods[6].DivideBy:= 1;
+
+  relativePeriods[7].Duration:= Day;
+  relativePeriods[7].Format:= rPeriodHours;
+  relativePeriods[7].DivideBy:= Hour;
+
+  relativePeriods[8].Duration:= 2 * Day;
+  relativePeriods[8].Format:= rPeriodDay;
+  relativePeriods[8].DivideBy:= 1;
+
+  relativePeriods[9].Duration:= Week;
+  relativePeriods[9].Format:= rPeriodDays;
+  relativePeriods[9].DivideBy:= Day;
+
+  relativePeriods[10].Duration:= 2 * Week;
+  relativePeriods[10].Format:= rPeriodWeek;
+  relativePeriods[10].DivideBy:= 1;
+
+  relativePeriods[11].Duration:= Month;
+  relativePeriods[11].Format:= rPeriodWeeks;
+  relativePeriods[11].DivideBy:= Week;
+
+  relativePeriods[12].Duration:= 2 * Month;
+  relativePeriods[12].Format:= rPeriodMonth;
+  relativePeriods[12].DivideBy:= 1;
+
+  relativePeriods[13].Duration:= Year;
+  relativePeriods[13].Format:= rPeriodMonths;
+  relativePeriods[13].DivideBy:= Month;
+
+  relativePeriods[14].Duration:= 365 * Day;
+  relativePeriods[14].Format:= rPeriodYear;
+  relativePeriods[14].DivideBy:= 1;
+
+  relativePeriods[15].Duration:= 2 * Year;
+  relativePeriods[15].Format:= rPeriodYears2;
+  relativePeriods[15].DivideBy:= 1;
+
+  relativePeriods[16].Duration:= LongTime;
+  relativePeriods[16].Format:= rPeriodYears;
+  relativePeriods[16].DivideBy:= Year;
+
+  relativePeriods[17].Duration:= MaxInt;
+  relativePeriods[17].Format:= rPeriodLongAgo;
+  relativePeriods[17].DivideBy:= 1;
+end;
+
+function FormatSeconds(ASeconds: Int64): String;
+var
+  suffix: String;
+  index: Integer;
+begin
+  if ASeconds < 0 then
+    suffix:= 'from now'
+  else
+    suffix:= 'ago';
+
+  for index:= Low(relativePeriods) to High(relativePeriods) do
+  begin
+    if relativePeriods[index].Duration > Abs(ASeconds) then
+    begin
+      if Pos('%d', relativePeriods[index].Format) > 0 then
+        Result:= Format(relativePeriods[index].Format, [
+          Abs(ASeconds) div relativePeriods[index].DivideBy,
+          suffix
+        ])
+      else
+        Result:= Format(relativePeriods[index].Format, [
+          suffix
+        ]);
+      break;
+    end;
+  end;
+end;
+
+class function THumanize.RelativeTime(ASecondsA, AsecondsB: Int64): String;
+var
+  diff: Int64;
+begin
+  Result:= EmptyStr;
+  diff:= ASecondsA - AsecondsB;
+  Result:= FormatSeconds(diff);
+end;
+
+class function THumanize.RelativeTime(ADateTimeA,
+  ADateTimeB: TDateTime): String;
+var
+  diff: Int64;
+begin
+  Result:= EmptyStr;
+  diff:= DateTimeToUnix(ADateTimeA) - DateTimeToUnix(ADateTimeB);
+  Result:= FormatSeconds(diff);
+end;
+
+initialization
+
+  BuildRelativePeriods;
+
+end.
+
