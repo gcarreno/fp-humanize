@@ -7,7 +7,7 @@
       <Version Value="11"/>
       <SearchPaths>
         <OtherUnitFiles Value="../../src"/>
-        <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)/"/>
+        <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
     </CompilerOptions>
     <Description Value="Provides human formatting for: Bytes, Comma(Int, FLoat, Array of Strings), CommaAnd(Array of Strings), Ordinals, Time"/>
@@ -33,7 +33,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 "/>
-    <Version Release="4"/>
+    <Version Release="5"/>
     <Files>
       <Item>
         <Filename Value="../../src/humanize.pas"/>
