@@ -8,6 +8,7 @@ object frmMain: TfrmMain
   ClientWidth = 633
   Menu = MainMenu
   Position = poScreenCenter
+  LCLVersion = '4.99.0.0'
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   object panButtons: TPanel

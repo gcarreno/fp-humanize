@@ -97,12 +97,12 @@ begin
   memLog.Append(' Base 10');
   for size in cSizes do
   begin
-    memLog.Append(Format('  %d: %s', [size, THumanize.Bytes(size, 2, True)]));
+    memLog.Append(Format('  %d: %s', [size, THumanize.Bytes(size, 1, True)]));
   end;
   memLog.Append(' Base 2');
   for size in cSizes do
   begin
-    memLog.Append(Format('  %d: %s', [size, THumanize.Bytes(size)]));
+    memLog.Append(Format('  %d: %s', [size, THumanize.Bytes(size, 1)]));
   end;
 end;
 
