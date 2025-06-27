@@ -1,8 +1,7 @@
 # Lazarus Humanize Package
-[![Build Status](https://github.com/gcarreno/fp-humanize/actions/workflows/main.yaml/badge.svg?branch=main)](https://github.com/gcarreno/fp-humanize/actions)
+[![Supports Windows](https://img.shields.io/badge/support-Windows-blue?logo=Windows)](https://github.com/gcarreno/fp-humanize/releases/latest)
 [![Supports Linux](https://img.shields.io/badge/support-Linux-yellow?logo=Linux)](https://github.com/gcarreno/fp-humanize/releases/latest)
-[![Supports Windows](https://img.shields.io/badge/support-Linux-yellow?logo=Windows)](https://github.com/gcarreno/fp-humanize/releases/latest)
-[![Supports macOS](https://img.shields.io/badge/support-Linux-yellow?logo=macos)](https://github.com/gcarreno/fp-humanize/releases/latest)
+[![Supports macOS](https://img.shields.io/badge/support-macOS-black?logo=macOS)](https://github.com/gcarreno/fp-humanize/releases/latest)
 [![License](https://img.shields.io/github/license/gcarreno/fp-humanize)](https://github.com/gcarreno/fp-humanize/blob/main/LICENSE)
 [![Latest Release](https://img.shields.io/github/v/release/gcarreno/fp-humanize?label=latest%20release)](https://github.com/gcarreno/fp-humanize/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/gcarreno/fp-humanize/total)](https://github.com/gcarreno/fp-humanize/releases)
