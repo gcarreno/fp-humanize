@@ -1,4 +1,5 @@
 # Lazarus Humanize Package
+[![Build Status](https://github.com/gcarreno/fp-humanize/actions/workflows/main.yaml/badge.svg?branch=main)](https://github.com/gcarreno/fp-humanize/actions)
 [![Supports Windows](https://img.shields.io/badge/support-Windows-blue?logo=Windows)](https://github.com/gcarreno/fp-humanize/releases/latest)
 [![Supports Linux](https://img.shields.io/badge/support-Linux-yellow?logo=Linux)](https://github.com/gcarreno/fp-humanize/releases/latest)
 [![Supports macOS](https://img.shields.io/badge/support-macOS-black?logo=macOS)](https://github.com/gcarreno/fp-humanize/releases/latest)
