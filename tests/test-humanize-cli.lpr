@@ -5,10 +5,10 @@ program testhumanizecli;
 uses
   Classes
 , consoletestrunner
-, fpcunittestinsight
-, jsonparser
 , TestHumanizeBytes
-, TestHumanizeComma, TestHumanizeOrdinals, TestHumanizeTime
+, TestHumanizeComma
+, TestHumanizeOrdinals
+, TestHumanizeTime
 ;
 
 type
@@ -24,16 +24,11 @@ var
   Application: TMyTestRunner;
 
 begin
-  if IsTestInsightListening() then
-    RunRegisteredTests('','')
-  else
-    begin
-    DefaultRunAllTests:=True;
-    DefaultFormat:=fPlain;
-    Application := TMyTestRunner.Create(nil);
-    Application.Initialize;
-    Application.Title := 'FPCUnit Console test runner';
-    Application.Run;
-    Application.Free;
-    end;
+  DefaultRunAllTests:=True;
+  DefaultFormat:=fPlain;
+  Application := TMyTestRunner.Create(nil);
+  Application.Initialize;
+  Application.Title := 'Humanize package tests';
+  Application.Run;
+  Application.Free;
 end.
