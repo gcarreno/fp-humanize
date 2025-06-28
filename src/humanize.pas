@@ -32,6 +32,16 @@ type
   end;
 
 resourcestring
+  rBytesB = 'B';
+  rBytesB2KB = 'KiB';
+  rBytesB10KB = 'KB';
+  rBytesB2MB = 'MiB';
+  rBytesB10MB = 'MB';
+  rBytesB2GB = 'GiB';
+  rBytesB10GB = 'GB';
+  rBytesB2TB = 'TiB';
+  rBytesB10TB = 'TB';
+
   rComma = ', ';
 
   rCommaAnd = '%s and %s';
@@ -70,8 +80,20 @@ uses
 class function THumanize.Bytes(ABytes: UInt64; Aprecision: Integer;
   AUseBase10: Boolean): String;
 const
-  cUnits: array of String = ('B', 'KiB', 'MiB', 'GiB', 'TiB');
-  cUnitsBase10: array of String = ('B', 'KB', 'MB', 'GB', 'TB');
+  cUnits: array of String = (
+    rBytesB,
+    rBytesB2KB,
+    rBytesB2MB,
+    rBytesB2GB,
+    rBytesB2TB
+  );
+  cUnitsBase10: array of String = (
+  rBytesB,
+  rBytesB10KB,
+  rBytesB10MB,
+  rBytesB10GB,
+  rBytesB10TB
+  );
 var
   index: Integer;
   bytesTMP: Double;
