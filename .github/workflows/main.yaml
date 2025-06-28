@@ -57,7 +57,7 @@ jobs:
           bin/Demo.exe
 
   test:
-    name: Test package
+    name: Test fp-humanize
     runs-on: ${{ matrix.operating-system }}
 
     strategy:
@@ -141,8 +141,8 @@ jobs:
         echo Darwin
         cd demo-macos-latest
         cp -r ../demo/Demo.app .
+        find . -iname ".gitkeep" -delete
         chmod +x Demo
-        ls -alFR
         cp Demo Demo.app/Contents/MacOS
         cp -r ../locale Demo.app/Contents/MacOS
         tar -zcvf demo-${{ env.tag }}-x86_64-darwin.tar.gz Demo.app
