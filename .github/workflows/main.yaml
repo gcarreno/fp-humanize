@@ -160,7 +160,7 @@ jobs:
         name: fp-humanize ${{ env.tag }}
         body: ${{ steps.git-cliff.outputs.content }}
         files: |
-          demo-linux-latest/*.tar.gz
+          demo-ubuntu-latest/*.tar.gz
           demo-macos-latest/*.tar.gz
           demo-windows-latest/*.zip
       env:
