@@ -48,6 +48,7 @@ jobs:
         lazbuild -B --bm=Release "demo/Demo.lpi"
 
     - name: Upload binary
+      if: ${{ matrix.lazarus-versions == 'stable' }}
       uses: actions/upload-artifact@v4
       with:
         name: demo-${{ matrix.operating-system }}
@@ -123,9 +124,11 @@ jobs:
         zip -r demo-${{ env.tag }}-x86_64-win64.zip Demo.exe locale
         cd ..
         cd demo-ubuntu-latest
+        cp -r ../demo/Demo.App .
         chmod +x Demo
-        cp -r ../locale .
-        tar -zcvf demo-${{ env.tag }}-x86_64-Darwin.tar.gz Demo locale
+        mv Demo Demo.app/Contents/MacOS
+        cp -r ../locale Demo.app/Contents/MacOS
+        tar -zcvf demo-${{ env.tag }}-x86_64-darwin.tar.gz Demo.app
 
     - name: Generate Release Notes
       id: git-cliff
