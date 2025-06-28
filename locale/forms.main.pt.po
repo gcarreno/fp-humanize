@@ -1,0 +1,44 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Gustavo 'Gus' Carreno <guscarreno@gmail.com>\n"
+"Language-Team: \n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#: forms.main.rlogbytesb10
+msgid " Base 10"
+msgstr " Base 10"
+
+#: forms.main.rlogbytesb2
+msgid " Base 2"
+msgstr " Base 2"
+
+#: forms.main.rlogbytesexample
+msgid "=== Bytes Example ==="
+msgstr "=== Exemplo Bytes ==="
+
+#: forms.main.rlogcommaexample
+msgid "=== Comma Example ==="
+msgstr "=== Exemplo Virgula ==="
+
+#: forms.main.rlogordinalexample
+msgid "=== Ordinal Example ==="
+msgstr "===  Exemplo Ordinais ==="
+
+#: forms.main.rlogtimedatetime
+msgid " DateTime"
+msgstr " DateTime"
+
+#: forms.main.rlogtimeexample
+msgid "=== Time Example ==="
+msgstr "=== Exemplo Tempo ==="
+
+#: forms.main.rlogtimeseconds
+msgid " Seconds"
+msgstr "Segundos"

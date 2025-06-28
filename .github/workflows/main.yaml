@@ -127,17 +127,20 @@ jobs:
 
     - name: Create release files
       run: |
+        echo Ubuntu
         cd demo-ubuntu-latest
         chmod +x Demo
         cp -r ../locale .
         tar -zcvf demo-${{ env.tag }}-x86_64-linux.tar.gz Demo locale
         cd ..
+        echo Windows
         cd demo-windows-latest
         cp -r ../locale .
         zip -r demo-${{ env.tag }}-x86_64-win64.zip Demo.exe locale
         cd ..
-        cd demo-ubuntu-latest
-        cp -r ../demo/Demo.App .
+        echo Darwin
+        cd demo-macos-latest
+        cp -r ../demo/Demo.app .
         chmod +x Demo
         mv Demo Demo.app/Contents/MacOS
         cp -r ../locale Demo.app/Contents/MacOS
@@ -153,7 +156,7 @@ jobs:
     - name: Create GitHub release
       uses: softprops/action-gh-release@v2
       with:
-        name: fp-ncurses-tui ${{ env.tag }}
+        name: fp-humanize ${{ env.tag }}
         body: ${{ steps.git-cliff.outputs.content }}
         files: |
           demo-linux-latest/*.tar.gz
