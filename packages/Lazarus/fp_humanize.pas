@@ -2,11 +2,20 @@
   This source is only used to compile and install the package.
  }
 
-unit Humanize;
+unit fp_humanize;
 
 {$warn 5023 off : no warning about unused units}
 interface
 
+uses
+  humanize, LazarusPackageIntf;
+
 implementation
 
+procedure Register;
+begin
+end;
+
+initialization
+  RegisterPackage('fp_humanize', @Register);
 end.
