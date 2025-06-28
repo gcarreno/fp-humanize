@@ -86,6 +86,7 @@ jobs:
 
     - name: Run the tests
       run: bin/test-humanize-cli --all --format=plain
+
   release:
     if: contains(github.ref_type, 'tag')
 
@@ -122,7 +123,7 @@ jobs:
         path: demo-macos-latest
 
     - name: List files
-      run: ls -alF demo-bin
+      run: ls -alF demo-*-latest
 
     - name: Create release files
       run: |
@@ -155,6 +156,8 @@ jobs:
         name: fp-ncurses-tui ${{ env.tag }}
         body: ${{ steps.git-cliff.outputs.content }}
         files: |
-          examples-linux/*.tar.gz
+          demo-linux-latest/*.tar.gz
+          demo-macos-latest/*.tar.gz
+          demo-windows-latest/*.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
