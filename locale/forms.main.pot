@@ -1,0 +1,35 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: forms.main.rlogbytesb10
+msgid " Base 10"
+msgstr ""
+
+#: forms.main.rlogbytesb2
+msgid " Base 2"
+msgstr ""
+
+#: forms.main.rlogbytesexample
+msgid "=== Bytes Example ==="
+msgstr ""
+
+#: forms.main.rlogcommaexample
+msgid "=== Comma Example ==="
+msgstr ""
+
+#: forms.main.rlogordinalexample
+msgid "=== Ordinal Example ==="
+msgstr ""
+
+#: forms.main.rlogtimedatetime
+msgid " DateTime"
+msgstr ""
+
+#: forms.main.rlogtimeexample
+msgid "=== Time Example ==="
+msgstr ""
+
+#: forms.main.rlogtimeseconds
+msgid " Seconds"
+msgstr ""
+

@@ -7,7 +7,7 @@ interface
 uses
   Classes
 , SysUtils
-, DefaultTranslator
+//, DefaultTranslator
 ;
 
 type
