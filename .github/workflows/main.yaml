@@ -142,7 +142,8 @@ jobs:
         cd demo-macos-latest
         cp -r ../demo/Demo.app .
         chmod +x Demo
-        mv Demo Demo.app/Contents/MacOS/Demo
+        ls -alFR
+        cp Demo Demo.app/Contents/MacOS
         cp -r ../locale Demo.app/Contents/MacOS
         tar -zcvf demo-${{ env.tag }}-x86_64-darwin.tar.gz Demo.app
 
