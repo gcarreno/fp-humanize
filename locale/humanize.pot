@@ -1,0 +1,160 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: humanize.rbytesb
+msgid "B"
+msgstr ""
+
+#: humanize.rbytesb10gb
+msgid "GB"
+msgstr ""
+
+#: humanize.rbytesb10kb
+msgid "KB"
+msgstr ""
+
+#: humanize.rbytesb10mb
+msgid "MB"
+msgstr ""
+
+#: humanize.rbytesb10tb
+msgid "TB"
+msgstr ""
+
+#: humanize.rbytesb2gb
+msgid "GiB"
+msgstr ""
+
+#: humanize.rbytesb2kb
+msgid "KiB"
+msgstr ""
+
+#: humanize.rbytesb2mb
+msgid "MiB"
+msgstr ""
+
+#: humanize.rbytesb2tb
+msgid "TiB"
+msgstr ""
+
+#: humanize.rbytesunknown
+msgid "?"
+msgstr ""
+
+#: humanize.rcomma
+msgid ", "
+msgstr ""
+
+#: humanize.rcommaand
+#, object-pascal-format
+msgid "%s and %s"
+msgstr ""
+
+#: humanize.rordinalnd
+msgid "nd"
+msgstr ""
+
+#: humanize.rordinalrd
+msgid "rd"
+msgstr ""
+
+#: humanize.rordinalst
+msgid "st"
+msgstr ""
+
+#: humanize.rordinalth
+msgid "th"
+msgstr ""
+
+#: humanize.rperiodago
+msgid "ago"
+msgstr ""
+
+#: humanize.rperiodday
+#, object-pascal-format
+msgid "1 day %s"
+msgstr ""
+
+#: humanize.rperioddays
+#, object-pascal-format
+msgid "%d days %s"
+msgstr ""
+
+#: humanize.rperiodfromnow
+msgid "from now"
+msgstr ""
+
+#: humanize.rperiodhour
+#, object-pascal-format
+msgid "1 hour %s"
+msgstr ""
+
+#: humanize.rperiodhours
+#, object-pascal-format
+msgid "%d hours %s"
+msgstr ""
+
+#: humanize.rperiodlongago
+#, object-pascal-format
+msgid "a long while %s"
+msgstr ""
+
+#: humanize.rperiodminute
+#, object-pascal-format
+msgid "1 minute %s"
+msgstr ""
+
+#: humanize.rperiodminutes
+#, object-pascal-format
+msgid "%d minutes %s"
+msgstr ""
+
+#: humanize.rperiodmonth
+#, object-pascal-format
+msgid "1 month %s"
+msgstr ""
+
+#: humanize.rperiodmonths
+#, object-pascal-format
+msgid "%d months %s"
+msgstr ""
+
+#: humanize.rperiodnow
+msgid "now"
+msgstr ""
+
+#: humanize.rperiodsecond
+#, object-pascal-format
+msgid "1 second %s"
+msgstr ""
+
+#: humanize.rperiodseconds
+#, object-pascal-format
+msgid "%d seconds %s"
+msgstr ""
+
+#: humanize.rperiodweek
+#, object-pascal-format
+msgid "1 week %s"
+msgstr ""
+
+#: humanize.rperiodweeks
+#, object-pascal-format
+msgid "%d weeks %s"
+msgstr ""
+
+#: humanize.rperiodyear
+#, object-pascal-format
+msgid "1 year %s"
+msgstr ""
+
+#: humanize.rperiodyears
+#, object-pascal-format
+msgid "%d years %s"
+msgstr ""
+
+#: humanize.rperiodyears2
+#, object-pascal-format
+msgid "2 years %s"
+msgstr ""
+

@@ -8,7 +8,7 @@
       <Version Value="11"/>
       <SearchPaths>
         <OtherUnitFiles Value="../../src"/>
-        <UnitOutputDirectory Value="../../bin/lib/$(TargetCPU)-$(TargetOS)/"/>
+        <UnitOutputDirectory Value="../../bin/lib/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
     </CompilerOptions>
     <Description Value="Provides human formatting for: Bytes, Comma(Int, FLoat, Array of Strings), CommaAnd(Array of Strings), Ordinals, Time"/>
@@ -43,7 +43,7 @@ SOFTWARE.
     </Files>
     <i18n>
       <EnableI18N Value="True"/>
-      <OutDir Value="i18n"/>
+      <OutDir Value="../../locale"/>
     </i18n>
     <RequiredPkgs>
       <Item>

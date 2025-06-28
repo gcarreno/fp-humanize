@@ -7,6 +7,7 @@ interface
 uses
   Classes
 , SysUtils
+, DefaultTranslator
 ;
 
 type
@@ -32,15 +33,16 @@ type
   end;
 
 resourcestring
-  rBytesB = 'B';
-  rBytesB2KB = 'KiB';
-  rBytesB10KB = 'KB';
-  rBytesB2MB = 'MiB';
-  rBytesB10MB = 'MB';
-  rBytesB2GB = 'GiB';
-  rBytesB10GB = 'GB';
-  rBytesB2TB = 'TiB';
-  rBytesB10TB = 'TB';
+  rBytesUnknown = '?';
+  rBytesB       = 'B';
+  rBytesB2KB    = 'KiB';
+  rBytesB10KB   = 'KB';
+  rBytesB2MB    = 'MiB';
+  rBytesB10MB   = 'MB';
+  rBytesB2GB    = 'GiB';
+  rBytesB10GB   = 'GB';
+  rBytesB2TB    = 'TiB';
+  rBytesB10TB   = 'TB';
 
   rComma = ', ';
 
@@ -51,6 +53,8 @@ resourcestring
   rOrdinalND = 'nd';
   rOrdinalRD = 'rd';
 
+  rPeriodAgo     = 'ago';
+  rPeriodFromNow = 'from now';
   rPeriodNow     = 'now';
   rPeriodSecond  = '1 second %s';
   rPeriodSeconds = '%d seconds %s';
@@ -79,21 +83,6 @@ uses
 
 class function THumanize.Bytes(ABytes: UInt64; Aprecision: Integer;
   AUseBase10: Boolean): String;
-const
-  cUnits: array of String = (
-    rBytesB,
-    rBytesB2KB,
-    rBytesB2MB,
-    rBytesB2GB,
-    rBytesB2TB
-  );
-  cUnitsBase10: array of String = (
-  rBytesB,
-  rBytesB10KB,
-  rBytesB10MB,
-  rBytesB10GB,
-  rBytesB10TB
-  );
 var
   index: Integer;
   bytesTMP: Double;
@@ -123,7 +112,15 @@ begin
       bytesTMP:= bytesTMP / 1000;
     end;
     Result:= FormatFloat('#,#.' + precision, bytesTMP);
-    Result:= Format('%s %s', [Result, cUnitsBase10[index]]);
+    case index of
+      0: Result:= Format('%s %s', [Result, rBytesB]);
+      1: Result:= Format('%s %s', [Result, rBytesB10KB]);
+      2: Result:= Format('%s %s', [Result, rBytesB10MB]);
+      3: Result:= Format('%s %s', [Result, rBytesB10GB]);
+      4: Result:= Format('%s %s', [Result, rBytesB10TB]);
+    otherwise
+      Result:= Format('%s %s', [Result, rBytesUnknown]);
+    end;
   end
   else
   begin
@@ -133,7 +130,15 @@ begin
       bytesTMP:= bytesTMP / 1024;
     end;
     Result:= FormatFloat('#,#.' + precision, bytesTMP);
-    Result:= Format('%s %s', [Result, cUnits[index]]);
+    case index of
+      0: Result:= Format('%s %s', [Result, rBytesB]);
+      1: Result:= Format('%s %s', [Result, rBytesB2KB]);
+      2: Result:= Format('%s %s', [Result, rBytesB2MB]);
+      3: Result:= Format('%s %s', [Result, rBytesB2GB]);
+      4: Result:= Format('%s %s', [Result, rBytesB2TB]);
+    otherwise
+      Result:= Format('%s %s', [Result, rBytesUnknown]);
+    end;
   end;
 end;
 
@@ -322,9 +327,9 @@ var
   index: Integer;
 begin
   if ASeconds < 0 then
-    suffix:= 'from now'
+    suffix:= rPeriodFromNow
   else
-    suffix:= 'ago';
+    suffix:= rPeriodAgo;
 
   for index:= Low(relativePeriods) to High(relativePeriods) do
   begin

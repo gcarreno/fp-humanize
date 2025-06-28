@@ -13,6 +13,10 @@
       </XPManifest>
       <Icon Value="0"/>
     </General>
+    <i18n>
+      <EnableI18N Value="True"/>
+      <OutDir Value="../locale"/>
+    </i18n>
     <BuildModes>
       <Item Name="Default" Default="True"/>
       <Item Name="Debug">
@@ -23,7 +27,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="forms;../src"/>
+            <OtherUnitFiles Value="forms"/>
             <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -65,7 +69,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="forms;../src"/>
+            <OtherUnitFiles Value="forms"/>
             <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -99,10 +103,21 @@
     </PublishOptions>
     <RunParams>
       <FormatVersion Value="2"/>
+      <Modes>
+        <Mode Name="default"/>
+        <Mode Name="Portuguese">
+          <local>
+            <CommandLineParams Value="-l pt"/>
+          </local>
+        </Mode>
+      </Modes>
     </RunParams>
     <RequiredPackages>
       <Item>
         <PackageName Value="LCL"/>
+      </Item>
+      <Item>
+        <PackageName Value="fp_humanize"/>
       </Item>
     </RequiredPackages>
     <Units>
@@ -127,7 +142,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="forms;../src"/>
+      <OtherUnitFiles Value="forms"/>
       <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

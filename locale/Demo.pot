@@ -1,0 +1,71 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: forms.main.rlogbytesb10
+msgid " Base 10"
+msgstr ""
+
+#: forms.main.rlogbytesb2
+msgid " Base 2"
+msgstr ""
+
+#: forms.main.rlogbytesexample
+msgid "=== Bytes Example ==="
+msgstr ""
+
+#: forms.main.rlogcommaexample
+msgid "=== Comma Example ==="
+msgstr ""
+
+#: forms.main.rlogordinalexample
+msgid "=== Ordinal Example ==="
+msgstr ""
+
+#: forms.main.rlogtimedatetime
+msgid " DateTime"
+msgstr ""
+
+#: forms.main.rlogtimeexample
+msgid "=== Time Example ==="
+msgstr ""
+
+#: forms.main.rlogtimeseconds
+msgid " Seconds"
+msgstr ""
+
+#: tfrmmain.actfileexit.caption
+msgid "E&xit"
+msgstr ""
+
+#: tfrmmain.actfileexit.hint
+msgid "Exit"
+msgstr ""
+
+#: tfrmmain.acthumanizebytes.caption
+msgid "Bytes"
+msgstr ""
+
+#: tfrmmain.acthumanizecomma.caption
+msgid "Comma"
+msgstr ""
+
+#: tfrmmain.acthumanizeordinal.caption
+msgid "Ordinal"
+msgstr ""
+
+#: tfrmmain.acthumanizetime.caption
+msgid "Time"
+msgstr ""
+
+#: tfrmmain.caption
+msgid "Humanize Demo"
+msgstr ""
+
+#: tfrmmain.mnufile.caption
+msgid "&File"
+msgstr ""
+
+#: tfrmmain.mnuhumanize.caption
+msgid "&Humanize"
+msgstr ""
+

@@ -1,0 +1,11 @@
+{"version":1,"strings":[
+{"hash":263663471,"name":"tfrmmain.caption","sourcebytes":[72,117,109,97,110,105,122,101,32,68,101,109,111],"value":"Humanize Demo"},
+{"hash":2805797,"name":"tfrmmain.mnufile.caption","sourcebytes":[38,70,105,108,101],"value":"&File"},
+{"hash":205028341,"name":"tfrmmain.mnuhumanize.caption","sourcebytes":[38,72,117,109,97,110,105,122,101],"value":"&Humanize"},
+{"hash":4710148,"name":"tfrmmain.actfileexit.caption","sourcebytes":[69,38,120,105,116],"value":"E&xit"},
+{"hash":315140,"name":"tfrmmain.actfileexit.hint","sourcebytes":[69,120,105,116],"value":"Exit"},
+{"hash":4852419,"name":"tfrmmain.acthumanizebytes.caption","sourcebytes":[66,121,116,101,115],"value":"Bytes"},
+{"hash":4875313,"name":"tfrmmain.acthumanizecomma.caption","sourcebytes":[67,111,109,109,97],"value":"Comma"},
+{"hash":109773868,"name":"tfrmmain.acthumanizeordinal.caption","sourcebytes":[79,114,100,105,110,97,108],"value":"Ordinal"},
+{"hash":372789,"name":"tfrmmain.acthumanizetime.caption","sourcebytes":[84,105,109,101],"value":"Time"}
+]}

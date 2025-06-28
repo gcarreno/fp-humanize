@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ActnList,
-  StdActns, ExtCtrls, StdCtrls;
+  StdActns, ExtCtrls, StdCtrls, DefaultTranslator;
 
 type
 { TfrmMain }
@@ -46,6 +46,16 @@ type
 
 var
   frmMain: TfrmMain;
+
+resourcestring
+  rLogBytesExample   = '=== Bytes Example ===';
+  rLogBytesB10       = ' Base 10';
+  rLogBytesB2        = ' Base 2';
+  rLogCommaExample   = '=== Comma Example ===';
+  rLogOrdinalExample = '=== Ordinal Example ===';
+  rLogTimeExample    = '=== Time Example ===';
+  rLogTimeSeconds    = ' Seconds';
+  rLogTimeDateTime   = ' DateTime';
 
 implementation
 
@@ -93,13 +103,13 @@ var
   size: Int64;
 begin
   memLog.Clear;
-  memLog.Append('=== Bytes Example ===');
-  memLog.Append(' Base 10');
+  memLog.Append(rLogBytesExample);
+  memLog.Append(rLogBytesB10);
   for size in cSizes do
   begin
     memLog.Append(Format('  %d: %s', [size, THumanize.Bytes(size, 1, True)]));
   end;
-  memLog.Append(' Base 2');
+  memLog.Append(rLogBytesB2);
   for size in cSizes do
   begin
     memLog.Append(Format('  %d: %s', [size, THumanize.Bytes(size, 1)]));
@@ -111,7 +121,7 @@ const
   cStrings: array of String = ('One', 'two', 'apple', 'cat', 'dog');
 begin
   memLog.Clear;
-  memLog.Append('=== Comma Example ===');
+  memLog.Append(rLogCommaExample);
   memLog.Append(Format('  %d: %s', [10000000, THumanize.Comma(10000000)]));
   memLog.Append(Format('  %.2f: %s', [10000000.42, THumanize.Comma(10000000.42)]));
   memLog.Append(Format('  %.2f Precision 3: %s', [10000000.42, THumanize.Comma(10000000.42, 3)]));
@@ -139,7 +149,7 @@ var
   number: Integer;
 begin
   memLog.Clear;
-  memLog.Append('=== Ordinal Example ===');
+  memLog.Append(rLogOrdinalExample);
   for number in cNumbers do
     memLog.Append(Format('  %d: %s', [number, THumanize.Ordinal(number)]));
 end;
@@ -175,15 +185,15 @@ var
   nowUnix: INt64;
 begin
   memLog.Clear;
-  memLog.Append('=== Time Example ===');
-  memLog.Append(' Seconds');
+  memLog.Append(rLogTimeExample);
+  memLog.Append(rLogTimeSeconds);
   nowUnix:= DateTimeToUnix(Now);
   for duration in cDurations do
     memLog.Append(Format('  %d: %s', [duration, THumanize.RelativeTime(
       nowUnix,
       nowUnix + duration
       )]));
-  memLog.Append(' DateTime');
+  memLog.Append(rLogTimeDateTime);
   memLog.Append(Format('  ["%s", "%s"]: %s', [
     DateTimeToStr(Now),
     DateTimeToStr(Tomorrow),

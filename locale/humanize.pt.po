@@ -1,0 +1,170 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Gustavo 'Gus' Carreno <guscarreno@gmail.com>\n"
+"Language-Team: \n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#: humanize.rbytesb
+msgid "B"
+msgstr "B"
+
+#: humanize.rbytesb10gb
+msgid "GB"
+msgstr "GB"
+
+#: humanize.rbytesb10kb
+msgid "KB"
+msgstr "KB"
+
+#: humanize.rbytesb10mb
+msgid "MB"
+msgstr "MB"
+
+#: humanize.rbytesb10tb
+msgid "TB"
+msgstr "TB"
+
+#: humanize.rbytesb2gb
+msgid "GiB"
+msgstr "GiB"
+
+#: humanize.rbytesb2kb
+msgid "KiB"
+msgstr "KiB"
+
+#: humanize.rbytesb2mb
+msgid "MiB"
+msgstr "MiB"
+
+#: humanize.rbytesb2tb
+msgid "TiB"
+msgstr "TiB"
+
+#: humanize.rbytesunknown
+msgid "?"
+msgstr ""
+
+#: humanize.rcomma
+msgid ", "
+msgstr ", "
+
+#: humanize.rcommaand
+#, object-pascal-format
+msgid "%s and %s"
+msgstr "%s e %s"
+
+#: humanize.rordinalnd
+msgid "nd"
+msgstr "º"
+
+#: humanize.rordinalrd
+msgid "rd"
+msgstr "º"
+
+#: humanize.rordinalst
+msgid "st"
+msgstr "º"
+
+#: humanize.rordinalth
+msgid "th"
+msgstr "º"
+
+#: humanize.rperiodago
+msgid "ago"
+msgstr "atrás"
+
+#: humanize.rperiodday
+#, object-pascal-format
+msgid "1 day %s"
+msgstr "1 dia %s"
+
+#: humanize.rperioddays
+#, object-pascal-format
+msgid "%d days %s"
+msgstr "%d dias %s"
+
+#: humanize.rperiodfromnow
+msgid "from now"
+msgstr "no futuro"
+
+#: humanize.rperiodhour
+#, object-pascal-format
+msgid "1 hour %s"
+msgstr "1 hora %s"
+
+#: humanize.rperiodhours
+#, object-pascal-format
+msgid "%d hours %s"
+msgstr "%d horas %s"
+
+#: humanize.rperiodlongago
+#, object-pascal-format
+msgid "a long while %s"
+msgstr "muito tempo %s"
+
+#: humanize.rperiodminute
+#, object-pascal-format
+msgid "1 minute %s"
+msgstr "1 minuto %s"
+
+#: humanize.rperiodminutes
+#, object-pascal-format
+msgid "%d minutes %s"
+msgstr "%d minutos %s"
+
+#: humanize.rperiodmonth
+#, object-pascal-format
+msgid "1 month %s"
+msgstr "1 mês %s"
+
+#: humanize.rperiodmonths
+#, object-pascal-format
+msgid "%d months %s"
+msgstr "%d meses %s"
+
+#: humanize.rperiodnow
+msgid "now"
+msgstr "agora"
+
+#: humanize.rperiodsecond
+#, object-pascal-format
+msgid "1 second %s"
+msgstr "1 segundo %s"
+
+#: humanize.rperiodseconds
+#, object-pascal-format
+msgid "%d seconds %s"
+msgstr "%d segundos %s"
+
+#: humanize.rperiodweek
+#, object-pascal-format
+msgid "1 week %s"
+msgstr "1 semana %s"
+
+#: humanize.rperiodweeks
+#, object-pascal-format
+msgid "%d weeks %s"
+msgstr "%d semanas %s"
+
+#: humanize.rperiodyear
+#, object-pascal-format
+msgid "1 year %s"
+msgstr "1 ano %s"
+
+#: humanize.rperiodyears
+#, object-pascal-format
+msgid "%d years %s"
+msgstr "%d anos %s"
+
+#: humanize.rperiodyears2
+#, object-pascal-format
+msgid "2 years %s"
+msgstr "2 anos %s"
+
