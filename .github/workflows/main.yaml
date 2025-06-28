@@ -27,7 +27,7 @@ jobs:
       matrix:
         operating-system: [ ubuntu-latest, windows-latest, macos-latest ]
         lazarus-versions: [ stable, 3.4 ]
-      fail-fast: false
+      fail-fast: true
 
     steps:
     - name: Checkout Repository
@@ -64,7 +64,7 @@ jobs:
       matrix:
         operating-system: [ ubuntu-latest, windows-latest, macos-latest ]
         lazarus-versions: [ stable, 3.4 ]
-      fail-fast: false
+      fail-fast: true
 
     steps:
     - name: Checkout Repository
@@ -103,11 +103,23 @@ jobs:
     - name: Set env
       run: echo "tag=${{ github.ref_name }}" >> "$GITHUB_ENV"
 
-    - name: Download the Release binary
+    - name: Download Ubuntu
       uses: actions/download-artifact@v4
       with:
-        name: demo-${{ matrix.operating-system }}
-        path: demo-${{ matrix.operating-system }}
+        name: demo-ubuntu-latest
+        path: demo-ubuntu-latest
+
+    - name: Download Windows
+      uses: actions/download-artifact@v4
+      with:
+        name: demo-windows-latest
+        path: demo-windows-latest
+
+    - name: Download Darwin
+      uses: actions/download-artifact@v4
+      with:
+        name: demo-macos-latest
+        path: demo-macos-latest
 
     - name: List files
       run: ls -alF demo-bin
