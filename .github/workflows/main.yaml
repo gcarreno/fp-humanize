@@ -50,7 +50,7 @@ jobs:
     - name: Upload binary
       uses: actions/upload-artifact@v4
       with:
-        name: demo
+        name: demo-${{ matrix.operating-system }}
         path: |
           bin/Demo
           bin/Demo.exe
@@ -105,19 +105,27 @@ jobs:
     - name: Download the Release binary
       uses: actions/download-artifact@v4
       with:
-        name: demo
-        path: demo-bin
+        name: demo-${{ matrix.operating-system }}
+        path: demo-${{ matrix.operating-system }}
 
     - name: List files
       run: ls -alF demo-bin
 
     - name: Create release files
       run: |
-        cd demo-bin
+        cd demo-ubuntu-latest
         chmod +x Demo
         cp -r ../locale .
         tar -zcvf demo-${{ env.tag }}-x86_64-linux.tar.gz Demo locale
+        cd ..
+        cd demo-windows-latest
+        cp -r ../locale .
         zip -r demo-${{ env.tag }}-x86_64-win64.zip Demo.exe locale
+        cd ..
+        cd demo-ubuntu-latest
+        chmod +x Demo
+        cp -r ../locale .
+        tar -zcvf demo-${{ env.tag }}-x86_64-Darwin.tar.gz Demo locale
 
     - name: Generate Release Notes
       id: git-cliff
