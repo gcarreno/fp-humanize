@@ -1,5 +1,9 @@
 name: fp-humanize
 
+defaults:
+  run:
+    shell: bash
+
 permissions:
   contents: write
 
@@ -16,82 +20,118 @@ on:
 jobs:
 
   build:
-    name: 01 - Build Application
-    uses: gcarreno/re-usable-workflows/.github/workflows/build.lazarus.yml@main
-    with:
-      config: '{
-          "app-name": "Demo",
-          "lpi-path": "demo",
-          "bin-path": "bin",
-          "build-mode": "Release",
-          "lazarus-packages": "",
-          "matrix": {
-            "os": [
-              "ubuntu-latest",
-              "windows-latest",
-              "macos-latest"
-            ],
-            "include":[
-              {
-                "os": "ubuntu-latest",
-                "triplet": "x86_64-linux"
-              },
-              {
-                "os": "windows-latest",
-                "triplet": "x86_64-win64"
-              },
-              {
-                "os": "macos-latest",
-                "triplet": "x86_64-darwin"
-              }
-            ],
-            "lazarus-versions": [
-              "stable",
-              "3.4"
-            ]
-          }
-        }'
+    name: Build Demo
+    runs-on: ${{ matrix.operating-system }}
+
+    strategy:
+      matrix:
+        operating-system: [ ubuntu-latest, windows-latest, macos-latest ]
+        lazarus-versions: [ stable, 3.4 ]
       fail-fast: false
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        submodules: true
+
+    - name: Install Lazarus
+      uses: gcarreno/setup-lazarus@v3
+      with:
+        lazarus-version: ${{ matrix.lazarus-versions }}
+        with-cache: false
+
+    - name: Build the Demo
+      run: |
+        lazbuild -B "packages/Lazarus/fp_humanize.lpk"
+        lazbuild -B --bm=Release "demo/Demo.lpi"
+
+    - name: Upload binary
+      uses: actions/upload-artifact@v4
+      with:
+        name: demo
+        path: |
+          bin/Demo
+          bin/Demo.exe
 
   test:
-    name: 02 - Test Application
-    uses: gcarreno/re-usable-workflows/.github/workflows/test.lazarus.yml@main
-    with:
-      config: '{
-          "app-name": "test-humanize-cli",
-          "lpi-path": "tests",
-          "bin-path": "bin",
-          "build-mode": "Release",
-          "lazarus-packages": "",
-          "what-suite": "all",
-          "output-format": "plain",
-          "matrix": {
-            "os":[
-              "ubuntu-latest",
-              "windows-latest",
-              "macos-latest"
-            ],
-            "lazarus-versions": [
-              "stable",
-              "3.4"
-            ]
-          }
-        }'
+    name: Test package
+    runs-on: ${{ matrix.operating-system }}
+
+    strategy:
+      matrix:
+        operating-system: [ ubuntu-latest, windows-latest, macos-latest ]
+        lazarus-versions: [ stable, 3.4 ]
       fail-fast: false
 
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        submodules: true
+
+    - name: Install Lazarus
+      uses: gcarreno/setup-lazarus@v3
+      with:
+        lazarus-version: ${{ matrix.lazarus-versions }}
+        with-cache: false
+
+    - name: Build the test application
+      run: |
+        lazbuild -B "packages/Lazarus/fp_humanize.lpk"
+        lazbuild -B --bm=Release "tests/test-humanize-cli.lpi"
+
+    - name: Run the tests
+      run: bin/test-humanize-cli --all --format=plain
   release:
     if: contains(github.ref_type, 'tag')
 
-    name: 03 - Create GitHub Release
-    uses: gcarreno/re-usable-workflows/.github/workflows/release.lazarus.yml@main
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
     needs: [ build, test ]
-    with:
-      config: '{
-          "app-name": "Demo",
-          "tag": "${{ github.ref_name }}",
-          "cliff-cfg": "cliff.toml",
-          "win": "${{ needs.build.outputs.win-artefact-path }}",
-          "lin": "${{ needs.build.outputs.lin-artefact-path }}",
-          "osx": "${{ needs.build.outputs.osx-artefact-path }}"
-        }'
-      fail-fast: false
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        submodules: true
+
+    - name: Set env
+      run: echo "tag=${{ github.ref_name }}" >> "$GITHUB_ENV"
+
+    - name: Download the Release binary
+      uses: actions/download-artifact@v4
+      with:
+        name: demo
+        path: demo-bin
+
+    - name: List files
+      run: ls -alF demo-bin
+
+    - name: Create release files
+      run: |
+        cd demo-bin
+        chmod +x Demo
+        cp -r ../locale .
+        tar -zcvf demo-${{ env.tag }}-x86_64-linux.tar.gz Demo locale
+        zip -r demo-${{ env.tag }}-x86_64-win64.zip Demo.exe locale
+
+    - name: Generate Release Notes
+      id: git-cliff
+      uses: orhun/git-cliff-action@v4
+      with:
+        config: cliff.toml
+        args: --latest --strip header
+
+    - name: Create GitHub release
+      uses: softprops/action-gh-release@v2
+      with:
+        name: fp-ncurses-tui ${{ env.tag }}
+        body: ${{ steps.git-cliff.outputs.content }}
+        files: |
+          examples-linux/*.tar.gz
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
