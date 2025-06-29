@@ -23,7 +23,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="sections;../src"/>
+            <OtherUnitFiles Value="sections"/>
             <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -57,7 +57,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="sections;../src"/>
+            <OtherUnitFiles Value="sections"/>
             <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -87,6 +87,9 @@
     <RequiredPackages>
       <Item>
         <PackageName Value="FCL"/>
+      </Item>
+      <Item>
+        <PackageName Value="fp_humanize"/>
       </Item>
     </RequiredPackages>
     <Units>
@@ -123,7 +126,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="sections;../src"/>
+      <OtherUnitFiles Value="sections"/>
       <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
   </CompilerOptions>
