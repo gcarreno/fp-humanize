@@ -2,7 +2,6 @@
 <CONFIG>
   <Package Version="5">
     <Name Value="fp_humanize"/>
-    <Type Value="RunTimeOnly"/>
     <Author Value="Gustavo &apos;Gus&apos; Carreno &lt;guscarreno@gmail.com>"/>
     <CompilerOptions>
       <Version Value="11"/>
