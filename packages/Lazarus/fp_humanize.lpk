@@ -2,7 +2,7 @@
 <CONFIG>
   <Package Version="5">
     <Name Value="fp_humanize"/>
-    <Type Value="RunAndDesignTime"/>
+    <Type Value="RunTimeOnly"/>
     <Author Value="Gustavo &apos;Gus&apos; Carreno &lt;guscarreno@gmail.com>"/>
     <CompilerOptions>
       <Version Value="11"/>
@@ -10,6 +10,9 @@
         <OtherUnitFiles Value="../../src"/>
         <UnitOutputDirectory Value="../../bin/lib/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
+      <Other>
+        <CustomOptions Value="-FcUTF8"/>
+      </Other>
     </CompilerOptions>
     <Description Value="Provides human formatting for: Bytes, Comma(Int, FLoat, Array of Strings), CommaAnd(Array of Strings), Ordinals, Time"/>
     <License Value="MIT License
@@ -48,6 +51,9 @@ SOFTWARE.
     <RequiredPkgs>
       <Item>
         <PackageName Value="FCL"/>
+      </Item>
+      <Item>
+        <PackageName Value="LazUtils"/>
       </Item>
     </RequiredPkgs>
     <UsageOptions>

@@ -48,14 +48,19 @@ var
   frmMain: TfrmMain;
 
 resourcestring
-  rLogBytesExample   = '=== Bytes Example ===';
-  rLogBytesB10       = ' Base 10';
-  rLogBytesB2        = ' Base 2';
-  rLogCommaExample   = '=== Comma Example ===';
-  rLogOrdinalExample = '=== Ordinal Example ===';
-  rLogTimeExample    = '=== Time Example ===';
-  rLogTimeSeconds    = ' Seconds';
-  rLogTimeDateTime   = ' DateTime';
+  rLogBytesExample      = '=== Bytes Example ===';
+  rLogBytesB10          = ' Base 10';
+  rLogBytesB2           = ' Base 2';
+  rLogCommaExample      = '=== Comma Example ===';
+  rLogOrdinalExample    = '=== Ordinal Example ===';
+  rLogTimeExample       = '=== Time Example ===';
+  rLogTimeSeconds       = ' Seconds';
+  rLogTimeDateTime      = ' DateTime';
+  rLogPrecision         = 'Precision';
+  rLOgStrings           = 'Strings';
+  rLOgStringsSorted     = 'Strings Sorted';
+  rLOgStringsAnd        = 'Strings And';
+  rLOgStringsAndSorted  = 'Strings And Sorted';
 
 implementation
 
@@ -118,17 +123,28 @@ end;
 
 procedure TfrmMain.actHumanizeCommaExecute(Sender: TObject);
 const
-  cStrings: array of String = ('One', 'two', 'apple', 'cat', 'dog');
+  cStrings: array of String = (
+    'One',
+    'two',
+    'apple',
+    'cat',
+    'dog',
+    'mãe',
+    '母親',
+    '母親',
+    '母亲',
+    '어머니'
+  );
 begin
   memLog.Clear;
   memLog.Append(rLogCommaExample);
   memLog.Append(Format('  %d: %s', [10000000, THumanize.Comma(10000000)]));
   memLog.Append(Format('  %.2f: %s', [10000000.42, THumanize.Comma(10000000.42)]));
   memLog.Append(Format('  %.2f Precision 3: %s', [10000000.42, THumanize.Comma(10000000.42, 3)]));
-  memLog.Append(Format('  Strings: "%s"', [THumanize.Comma(cStrings)]));
-  memLog.Append(Format('  Strings Sorted: "%s"', [THumanize.Comma(cStrings, True)]));
-  memLog.Append(Format('  Strings And: "%s"', [THumanize.CommaAnd(cStrings)]));
-  memLog.Append(Format('  Strings And Sorted: "%s"', [THumanize.CommaAnd(cStrings, True)]));
+  memLog.Append(Format('  %s: "%s"', [rLOgStrings, THumanize.Comma(cStrings)]));
+  memLog.Append(Format('  %s: "%s"', [rLOgStringsSorted, THumanize.Comma(cStrings, True)]));
+  memLog.Append(Format('  %s: "%s"', [rLOgStringsAnd, THumanize.CommaAnd(cStrings)]));
+  memLog.Append(Format('  %s: "%s"', [rLOgStringsAndSorted, THumanize.CommaAnd(cStrings, True)]));
 end;
 
 procedure TfrmMain.actHumanizeOrdinalExecute(Sender: TObject);

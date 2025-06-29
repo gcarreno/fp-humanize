@@ -21,6 +21,26 @@ msgstr ""
 msgid "=== Ordinal Example ==="
 msgstr ""
 
+#: forms.main.rlogprecision
+msgid "Precision"
+msgstr ""
+
+#: forms.main.rlogstrings
+msgid "Strings"
+msgstr ""
+
+#: forms.main.rlogstringsand
+msgid "Strings And"
+msgstr ""
+
+#: forms.main.rlogstringsandsorted
+msgid "Strings And Sorted"
+msgstr ""
+
+#: forms.main.rlogstringssorted
+msgid "Strings Sorted"
+msgstr ""
+
 #: forms.main.rlogtimedatetime
 msgid " DateTime"
 msgstr ""

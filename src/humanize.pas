@@ -7,6 +7,7 @@ interface
 uses
   Classes
 , SysUtils
+, Translations
 ;
 
 type
@@ -367,8 +368,61 @@ begin
   Result:= FormatSeconds(diff);
 end;
 
+procedure Translate(ALang: string);
+var
+  folder: String;
+begin
+  if ALang = EmptyStr then exit;
+
+  folder:= EmptyStr;
+  if DirectoryExists('locale') then
+    folder:= 'locale';
+  if DirectoryExists('languages') then
+    folder:= 'languages';
+  if folder = EmptyStr then exit;
+
+  TranslateUnitResourceStrings('humanize', Format('%s/humanize.%s.po', [
+    folder,
+    ALang
+  ]));
+end;
+
+function GetLanguageFromCommandLine: String;
+var
+  index: Integer;
+begin
+  Result:= EmptyStr;
+  for index:= 0 to ParamCount do
+  begin
+    if ParamStr(index) = '-l' then
+    begin
+      Result:= ParamStr(index + 1);
+      break;
+    end;
+    if Pos('--lang', ParamStr(index)) > 0 then
+    begin
+      if Pos('=', ParamStr(index)) > 0 then
+      begin
+        Result:= Copy(ParamStr(index), Pos('=', ParamStr(index)) + 1, Length(ParamStr(index)));
+        break;
+      end
+      else
+      begin
+        Result:= ParamStr(index + 1);
+        break;
+      end;
+    end;
+  end;
+  if Result = EmptyStr then
+    Result:= GetLanguageID.LanguageCode;
+end;
+
 initialization
 
+  // Get current language and translate strings to it
+  Translate(GetLanguageFromCommandLine);
+
+  // Build the relative periods array
   BuildRelativePeriods;
 
 end.

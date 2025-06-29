@@ -31,6 +31,26 @@ msgstr "=== Exemplo Virgula ==="
 msgid "=== Ordinal Example ==="
 msgstr "=== Exemplo Ordinais ==="
 
+#: forms.main.rlogprecision
+msgid "Precision"
+msgstr "Precisão"
+
+#: forms.main.rlogstrings
+msgid "Strings"
+msgstr "Cadeia"
+
+#: forms.main.rlogstringsand
+msgid "Strings And"
+msgstr "Cadeia E"
+
+#: forms.main.rlogstringsandsorted
+msgid "Strings And Sorted"
+msgstr "Cadeia E Ordenada"
+
+#: forms.main.rlogstringssorted
+msgid "Strings Sorted"
+msgstr "Cadeia Ordenada"
+
 #: forms.main.rlogtimedatetime
 msgid " DateTime"
 msgstr " DateTime"
@@ -41,7 +61,7 @@ msgstr "=== Exemplo Tempo ==="
 
 #: forms.main.rlogtimeseconds
 msgid " Seconds"
-msgstr "Segundos"
+msgstr " Segundos"
 
 #: tfrmmain.actfileexit.caption
 msgid "E&xit"
@@ -78,4 +98,3 @@ msgstr "&Ficheiro"
 #: tfrmmain.mnuhumanize.caption
 msgid "&Humanize"
 msgstr "&Humanizar"
-

@@ -8,14 +8,8 @@ unit fp_humanize;
 interface
 
 uses
-  humanize, LazarusPackageIntf;
+  humanize;
 
 implementation
 
-procedure Register;
-begin
-end;
-
-initialization
-  RegisterPackage('fp_humanize', @Register);
 end.
